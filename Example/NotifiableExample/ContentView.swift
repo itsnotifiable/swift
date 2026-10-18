@@ -11,6 +11,11 @@ struct ContentView: View {
         .font(.title2.bold())
       Text(status)
         .foregroundStyle(.secondary)
+      if let message = notifiable.snapshot.error?.message {
+        Text(message)
+          .font(.footnote)
+          .foregroundStyle(.red)
+      }
       Button("Enable notifications") {
         Task {
           try? await notifiable.requestPermission()

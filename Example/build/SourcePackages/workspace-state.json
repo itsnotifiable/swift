@@ -1,0 +1,27 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "swift",
+          "kind" : "fileSystem",
+          "location" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift",
+          "name" : "Notifiable"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift"
+        },
+        "subpath" : "swift"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}

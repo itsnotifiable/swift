@@ -13,8 +13,8 @@ struct DevelopmentMark: View {
     let choice = client.snapshot.devIndicator
 
     ZStack {
-      if choice == nil {
-        IntroSheet(name: client.snapshot.clientConfig?.app?.name ?? "this app") { enabled in
+      if choice == nil, let config = client.snapshot.clientConfig {
+        IntroSheet(config: config) { enabled in
           Task { await client.setDevIndicator(enabled: enabled) }
         }
         .allowsHitTesting(true)
@@ -251,31 +251,36 @@ private enum MarkEdge {
 }
 
 private struct IntroSheet: View {
-  var name: String
+  var config: DeliveryConfig
   var onChoose: (Bool) -> Void
 
   var body: some View {
-    ZStack {
-      Color.black.opacity(0.35).ignoresSafeArea()
-      VStack(alignment: .leading, spacing: 16) {
-        DevelopmentPill()
-        Text(name)
-          .font(.title2.bold())
-        Text(
-          "Notifiable registers this device and delivers notifications to people who accept them. \(name) is in development, so a mark can stay on screen while you test."
-        )
-        Text(shortcutNote)
-        Button("Show the mark") { onChoose(true) }
-          .buttonStyle(.borderedProminent)
-          .tint(.black)
-        Button("Not now") { onChoose(false) }
-          .buttonStyle(.bordered)
+    DevelopmentSheet {
+      AppHeading(config: config)
+      Text(
+        "Notifiable registers this device and delivers notifications to people who accept them. \(appName) is in development, so a mark can stay on screen while you test."
+      )
+      .font(.body)
+      .foregroundStyle(Color.white.opacity(0.78))
+      .multilineTextAlignment(.center)
+      .fixedSize(horizontal: false, vertical: true)
+      Text(shortcutNote)
+        .font(.subheadline)
+        .foregroundStyle(Color.white.opacity(0.62))
+        .multilineTextAlignment(.center)
+        .fixedSize(horizontal: false, vertical: true)
+      SheetButton(title: "Show the mark", prominent: true) {
+        onChoose(true)
       }
-      .padding(24)
-      .frame(maxWidth: 420)
-      .background(.background, in: RoundedRectangle(cornerRadius: 28))
-      .padding(24)
+      .padding(.top, 6)
+      SheetButton(title: "Not now", prominent: false) {
+        onChoose(false)
+      }
     }
+  }
+
+  private var appName: String {
+    config.app?.name ?? "This app"
   }
 
   private var shortcutNote: String {
@@ -297,56 +302,17 @@ private struct RecapSheet: View {
   var onClose: () -> Void
 
   var body: some View {
-    ZStack {
-      Color.black.opacity(0.35).ignoresSafeArea()
-        .onTapGesture(perform: onClose)
-      VStack(alignment: .leading, spacing: 16) {
-        DevelopmentPill()
-        HStack(spacing: 12) {
-          if let icon = config.app?.icon, let url = URL(string: icon) {
-            AsyncImage(url: url) { image in
-              image.resizable().scaledToFill()
-            } placeholder: {
-              Color.gray.opacity(0.2)
-            }
-            .frame(width: 44, height: 44)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-          }
-          VStack(alignment: .leading) {
-            Text(config.app?.name ?? "This app")
-              .font(.headline)
-            if let description = config.app?.description {
-              Text(description)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            }
-          }
-        }
-        bundleRow
-        Toggle("Share SDK diagnostics", isOn: Binding(
-          get: { diagnosticsEnabled },
-          set: onDiagnostics
-        ))
-        Text("Help improve Notifiable by sharing SDK crash reports during development.")
+    DevelopmentSheet(onDismiss: onClose) {
+      AppHeading(config: config)
+      bundleRow
+      diagnosticsBox
+      #if targetEnvironment(simulator)
+        Text("Press Command N to show the mark again.")
           .font(.footnote)
-          .foregroundStyle(.secondary)
-        Link(
-          "Learn what is collected",
-          destination: URL(string: "https://notifiable.sh/sdk-diagnostics")!
-        )
-        .font(.footnote)
-        #if targetEnvironment(simulator)
-          Text("Press Command N to show the mark again.")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-        #endif
-        Button("Hide the mark", action: onHide)
-          .buttonStyle(.bordered)
-      }
-      .padding(24)
-      .frame(maxWidth: 420)
-      .background(.background, in: RoundedRectangle(cornerRadius: 28))
-      .padding(24)
+          .foregroundStyle(Color.white.opacity(0.55))
+          .multilineTextAlignment(.center)
+      #endif
+      SheetButton(title: "Hide the mark", prominent: false, action: onHide)
     }
   }
 
@@ -356,41 +322,250 @@ private struct RecapSheet: View {
     let check = packageCheck(configured: configured, applicationId: applicationId)
 
     VStack(alignment: .leading, spacing: 8) {
-      Text("iOS bundle ID")
-        .font(.subheadline.weight(.semibold))
       HStack {
-        Text(configured ?? "Not set in the dashboard")
+        Text("iOS bundle ID")
+          .font(.caption.weight(.semibold))
+          .foregroundStyle(Color.white.opacity(0.45))
         Spacer()
         if check == .match {
           Image(systemName: "checkmark.circle.fill")
-            .foregroundStyle(.green)
+            .foregroundStyle(Color(red: 0.35, green: 0.82, blue: 0.45))
         } else if check == .mismatch {
           Image(systemName: "exclamationmark.circle.fill")
-            .foregroundStyle(.red)
+            .foregroundStyle(Color(red: 0.95, green: 0.35, blue: 0.32))
         }
       }
-      .font(.footnote)
-
+      Text(configured ?? "Not set in the dashboard")
+        .font(.subheadline.weight(.medium))
+        .foregroundStyle(.white)
+        .frame(maxWidth: .infinity, alignment: .leading)
       if check == .mismatch, let applicationId {
         Text("Paste \(applicationId) into the dashboard.")
           .font(.footnote)
-        Button("Copy \(applicationId)") {
+          .foregroundStyle(Color.white.opacity(0.62))
+        Button {
           onCopy(applicationId)
+        } label: {
+          Text("Copy \(applicationId)")
+            .font(.footnote.weight(.semibold))
+            .foregroundStyle(.white)
         }
-        .font(.footnote)
       }
     }
+    .padding(14)
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .background(Color.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 16))
+  }
+
+  private var diagnosticsBox: some View {
+    VStack(alignment: .leading, spacing: 10) {
+      Toggle(isOn: Binding(get: { diagnosticsEnabled }, set: onDiagnostics)) {
+        VStack(alignment: .leading, spacing: 2) {
+          Text("Share SDK diagnostics")
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(.white)
+          Text("Help improve Notifiable by sharing SDK crash reports during development.")
+            .font(.caption)
+            .foregroundStyle(Color.white.opacity(0.55))
+        }
+      }
+      .tint(.white)
+      Divider().overlay(Color.white.opacity(0.14))
+      Link(destination: URL(string: "https://notifiable.sh/sdk-diagnostics")!) {
+        Text("Learn what is collected")
+          .font(.caption.weight(.semibold))
+          .foregroundStyle(.white)
+      }
+    }
+    .padding(14)
+    .background(Color.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 16))
   }
 }
 
-private struct DevelopmentPill: View {
+private struct DevelopmentSheet<Content: View>: View {
+  var onDismiss: (() -> Void)?
+  @ViewBuilder var content: () -> Content
+  @State private var presented = false
+  @State private var dismissing = false
+
   var body: some View {
-    Text("Development")
-      .font(.caption.weight(.semibold))
-      .padding(.horizontal, 10)
-      .padding(.vertical, 4)
-      .background(Color.orange.opacity(0.2), in: Capsule())
-      .foregroundStyle(Color.orange)
+    GeometryReader { proxy in
+      ZStack(alignment: .bottom) {
+        Color.black.opacity(presented ? 0.45 : 0)
+          .ignoresSafeArea()
+          .onTapGesture {
+            guard onDismiss != nil else {
+              return
+            }
+
+            dismiss()
+          }
+        VStack(spacing: 14) {
+          Capsule()
+            .fill(Color.white.opacity(0.22))
+            .frame(width: 36, height: 4)
+          content()
+        }
+        .padding(.horizontal, 22)
+        .padding(.top, 10)
+        .padding(.bottom, 18)
+        .frame(maxWidth: 460)
+        .background(sheetBackground)
+        .padding(.horizontal, 12)
+        .padding(.bottom, 12)
+        .offset(y: presented ? 0 : proxy.size.height)
+      }
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .environment(\.dismissDevelopmentSheet, DismissSheetAction(call: dismiss(then:)))
+    .onAppear {
+      withAnimation(.spring(response: 0.46, dampingFraction: 0.86)) {
+        presented = true
+      }
+    }
+  }
+
+  private func dismiss() {
+    dismiss(then: onDismiss ?? {})
+  }
+
+  private func dismiss(then action: @escaping () -> Void) {
+    guard !dismissing else {
+      return
+    }
+
+    dismissing = true
+    withAnimation(.spring(response: 0.34, dampingFraction: 0.92)) {
+      presented = false
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.28) {
+      action()
+    }
+  }
+
+  private var sheetBackground: some View {
+    RoundedRectangle(cornerRadius: 28, style: .continuous)
+      .fill(Color(red: 0.067, green: 0.067, blue: 0.067))
+      .overlay {
+        RoundedRectangle(cornerRadius: 28, style: .continuous)
+          .strokeBorder(Color.white.opacity(0.12), lineWidth: 1)
+      }
+  }
+}
+
+private struct AppHeading: View {
+  var config: DeliveryConfig
+
+  var body: some View {
+    VStack(spacing: 10) {
+      AppIcon(url: config.app?.icon, name: config.app?.name)
+      Text(config.app?.name ?? "Notifiable")
+        .font(.title3.weight(.semibold))
+        .foregroundStyle(.white)
+        .multilineTextAlignment(.center)
+      if let description = config.app?.description {
+        Text(description)
+          .font(.subheadline)
+          .foregroundStyle(Color.white.opacity(0.62))
+          .multilineTextAlignment(.center)
+      }
+      Text("DEVELOPMENT")
+        .font(.caption2.weight(.bold))
+        .tracking(0.6)
+        .foregroundStyle(Color(red: 0.1, green: 0.08, blue: 0.03))
+        .padding(.horizontal, 10)
+        .padding(.vertical, 4)
+        .background(Color(red: 0.96, green: 0.73, blue: 0.26), in: Capsule())
+    }
+    .frame(maxWidth: .infinity)
+  }
+}
+
+private struct AppIcon: View {
+  var url: String?
+  var name: String?
+
+  var body: some View {
+    Group {
+      if let url, let iconURL = URL(string: url), iconURL.scheme == "https" || iconURL.scheme == "http" {
+        AsyncImage(url: iconURL) { phase in
+          switch phase {
+          case let .success(image):
+            image.resizable().scaledToFill()
+          default:
+            fallback
+          }
+        }
+      } else {
+        fallback
+      }
+    }
+    .frame(width: 72, height: 72)
+    .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+    .overlay {
+      RoundedRectangle(cornerRadius: 18, style: .continuous)
+        .strokeBorder(Color.white.opacity(0.16), lineWidth: 1)
+    }
+  }
+
+  private var fallback: some View {
+    ZStack {
+      Color.white.opacity(0.08)
+      Text(monogram)
+        .font(.title.weight(.bold))
+        .foregroundStyle(.white)
+    }
+  }
+
+  private var monogram: String {
+    let letter = name?.first { $0.isLetter }
+    return letter.map { String($0).uppercased() } ?? "N"
+  }
+}
+
+private struct DismissSheetAction {
+  var call: (@escaping () -> Void) -> Void
+
+  func callAsFunction(_ action: @escaping () -> Void) {
+    call(action)
+  }
+}
+
+private struct DismissSheetKey: EnvironmentKey {
+  static let defaultValue = DismissSheetAction { action in
+    action()
+  }
+}
+
+extension EnvironmentValues {
+  fileprivate var dismissDevelopmentSheet: DismissSheetAction {
+    get { self[DismissSheetKey.self] }
+    set { self[DismissSheetKey.self] = newValue }
+  }
+}
+
+private struct SheetButton: View {
+  var title: String
+  var prominent: Bool
+  var action: () -> Void
+  @Environment(\.dismissDevelopmentSheet) private var dismissSheet
+
+  var body: some View {
+    Button {
+      dismissSheet(action)
+    } label: {
+      Text(title)
+        .font(.body.weight(.semibold))
+        .foregroundStyle(prominent ? Color(red: 0.067, green: 0.067, blue: 0.067) : Color.white.opacity(0.78))
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 14)
+        .background {
+          if prominent {
+            RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color.white)
+          }
+        }
+    }
+    .buttonStyle(.plain)
   }
 }
 

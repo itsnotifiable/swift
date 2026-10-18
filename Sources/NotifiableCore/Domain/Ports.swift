@@ -29,6 +29,13 @@ public protocol PushPort: AnyObject, Sendable {
   func permissionStatus() async -> PermissionStatus
   func requestPermission() async -> PermissionStatus
   func token() async -> String?
+  func registrationError() async -> String?
+}
+
+extension PushPort {
+  public func registrationError() async -> String? {
+    nil
+  }
 }
 
 public protocol DevicePort: Sendable {

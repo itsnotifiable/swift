@@ -1,0 +1,4 @@
+module Notifiable {
+header "Notifiable-Swift.h"
+export *
+}

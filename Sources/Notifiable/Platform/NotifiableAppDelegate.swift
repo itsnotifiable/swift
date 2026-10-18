@@ -1,7 +1,10 @@
 #if os(iOS)
 import Foundation
 import NotifiableCore
+import os
 import UIKit
+
+private let pushLog = Logger(subsystem: "sh.notifiable.swift", category: "push")
 
 public final class NotifiableAppDelegate: NSObject, UIApplicationDelegate {
   public override init() {
@@ -11,8 +14,16 @@ public final class NotifiableAppDelegate: NSObject, UIApplicationDelegate {
 
   public func application(
     _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    true
+  }
+
+  public func application(
+    _ application: UIApplication,
     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
   ) {
+    pushLog.info("APNs device token received (\(deviceToken.count, privacy: .public) bytes)")
     PushTokenStore.shared.set(deviceToken: deviceToken)
   }
 
@@ -20,7 +31,8 @@ public final class NotifiableAppDelegate: NSObject, UIApplicationDelegate {
     _ application: UIApplication,
     didFailToRegisterForRemoteNotificationsWithError error: Error
   ) {
-    PushTokenStore.shared.fail()
+    pushLog.error("APNs registration failed: \(error.localizedDescription, privacy: .public)")
+    PushTokenStore.shared.fail(error.localizedDescription)
   }
 }
 
@@ -29,8 +41,8 @@ public extension NotifiableClient {
     PushTokenStore.shared.set(deviceToken: deviceToken)
   }
 
-  static func didFailToRegisterForRemoteNotifications() {
-    PushTokenStore.shared.fail()
+  static func didFailToRegisterForRemoteNotifications(_ message: String = "APNs registration failed.") {
+    PushTokenStore.shared.fail(message)
   }
 }
 

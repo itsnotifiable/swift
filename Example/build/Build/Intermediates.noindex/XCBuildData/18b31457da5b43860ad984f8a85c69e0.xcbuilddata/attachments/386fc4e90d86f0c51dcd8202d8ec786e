@@ -1,0 +1,12 @@
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Client/NotifiableClient.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Environment.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Inbox.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/JSONValue.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Locale.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Models.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/NotifiableError.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Ports.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Subscriber.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Internal/Storage.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Transport/HTTPClient.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Transport/SdkAPI.swift

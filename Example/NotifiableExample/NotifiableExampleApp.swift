@@ -9,7 +9,7 @@ struct NotifiableExampleApp: App {
     WindowGroup {
       ContentView()
         .notifiable(
-          publicKey: "ntf_pub_example",
+          publicKey: "ntf_pub_h4ybjm0yhkdcob6ceztzlukb0qxcctm8",
           deepLinks: [
             DeepLink(path: "/orders", label: "Orders"),
             DeepLink(path: "/inbox", label: "Inbox"),

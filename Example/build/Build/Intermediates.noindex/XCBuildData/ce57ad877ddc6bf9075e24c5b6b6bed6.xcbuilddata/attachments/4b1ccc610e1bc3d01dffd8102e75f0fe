@@ -1,0 +1,10 @@
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/Notifiable.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/Platform/AppleDevicePort.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/Platform/ApplePushPort.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/Platform/NotifiableAppDelegate.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/Platform/NotifiableApplePlatform.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/Platform/PushTokenStore.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/SwiftUI/DevToasts.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/SwiftUI/DevelopmentMark.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/SwiftUI/DevelopmentShortcut.swift
+/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/Notifiable/SwiftUI/NotifiableModifier.swift

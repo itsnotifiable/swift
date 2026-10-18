@@ -6,6 +6,7 @@ public final class PushTokenStore: @unchecked Sendable {
   private let lock = NSLock()
   private var token: String?
   private var failed = false
+  private var failure: String?
 
   public func set(deviceToken: Data) {
     let hex = deviceToken.map { String(format: "%02x", $0) }.joined()
@@ -15,13 +16,27 @@ public final class PushTokenStore: @unchecked Sendable {
     lock.unlock()
   }
 
-  public func fail() {
+  public func fail(_ message: String) {
     lock.lock()
     failed = true
+    failure = message
     lock.unlock()
   }
 
-  public func current(timeout: TimeInterval = 2) async -> String? {
+  public func prepareForRegistration() {
+    lock.lock()
+    failed = false
+    failure = nil
+    lock.unlock()
+  }
+
+  public func failureMessage() -> String? {
+    lock.lock()
+    defer { lock.unlock() }
+    return failure
+  }
+
+  public func current(timeout: TimeInterval = 10) async -> String? {
     let deadline = Date().addingTimeInterval(timeout)
 
     while Date() < deadline {

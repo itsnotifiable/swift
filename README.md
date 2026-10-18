@@ -143,9 +143,9 @@ Button("Enable notifications") {
 
 **Automatically.** In the Notifiable dashboard, ask this subscriber for permission. The next time the app connects, the system prompt opens on its own. That includes a later request after the person denied or dismissed the first one. Connect does not ask when the dashboard has not requested it.
 
-The SDK owns Apple push. `provider` is `apns`. The token is the APNs device token as a hex string. It is saved only after permission is granted and a token exists.
+The SDK owns Apple push. `provider` is `apns`. The token is the APNs device token as a hex string. `requestPermission()` asks on the main thread, then registers the device with APNs and waits for the token. A granted permission is saved with `provider: "apns"` and that token.
 
-On the simulator, notification permission can be granted while no token exists. That save sends `not_determined` and omits `provider` and `token`, because the API rejects `granted` without both. A physical device with a token saves `granted`, `provider: "apns"`, and the token.
+The example signs the app with the push entitlement so the simulator can return a device token. Connect, before the person has allowed notifications, still saves the subscriber with `not_determined` and no token.
 
 ## Development and production
 

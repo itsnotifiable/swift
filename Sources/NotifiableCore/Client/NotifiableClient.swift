@@ -265,7 +265,11 @@ public final class NotifiableClient: ObservableObject {
       }
 
       let permission = await self.configuration.push!.requestPermission()
-      try await self.syncDevice(prompted: true, permission: permission)
+      try await self.syncDevice(
+        prompted: true,
+        permission: permission,
+        requireToken: permission == .granted
+      )
       return self.snapshot.permission
     }
   }
@@ -301,7 +305,11 @@ public final class NotifiableClient: ObservableObject {
     }
   }
 
-  private func syncDevice(prompted: Bool, permission override: PermissionStatus?) async throws {
+  private func syncDevice(
+    prompted: Bool,
+    permission override: PermissionStatus?,
+    requireToken: Bool = false
+  ) async throws {
     var session = try requireSession()
 
     if session.subscriberId == nil && session.anonymousId == nil {
@@ -319,7 +327,7 @@ public final class NotifiableClient: ObservableObject {
     } else {
       permission = await currentPermission()
     }
-    let token = try await tokenFor(permission)
+    let token = try await tokenFor(permission, requireToken: requireToken)
     let savedPermission: PermissionStatus =
       token == nil && permission == .granted ? .notDetermined : permission
     let anonymousId = session.subscriberId == nil ? session.anonymousId : nil
@@ -376,7 +384,10 @@ public final class NotifiableClient: ObservableObject {
     return await push.permissionStatus()
   }
 
-  private func tokenFor(_ permission: PermissionStatus) async throws -> (token: String, provider: PushProvider)? {
+  private func tokenFor(
+    _ permission: PermissionStatus,
+    requireToken: Bool = false
+  ) async throws -> (token: String, provider: PushProvider)? {
     guard permission == .granted else {
       return nil
     }
@@ -391,13 +402,15 @@ public final class NotifiableClient: ObservableObject {
     let token = (await push.token())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
 
     if token.isEmpty {
-      if push.allowMissingToken {
+      if push.allowMissingToken && !requireToken {
         return nil
       }
 
+      let detail = await push.registrationError()
       throw NotifiableError(
         code: .missingToken,
-        message: "Push permission is granted, but no device token was returned."
+        message: detail
+          ?? "Push permission is granted, but no device token was returned."
       )
     }
 

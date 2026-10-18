@@ -1,8 +1,11 @@
 #if os(iOS)
 import Foundation
 import NotifiableCore
+import os
 import UIKit
 import UserNotifications
+
+private let pushLog = Logger(subsystem: "sh.notifiable.swift", category: "push")
 
 public final class ApplePushPort: PushPort, @unchecked Sendable {
   public let provider: PushProvider = .apns
@@ -16,20 +19,44 @@ public final class ApplePushPort: PushPort, @unchecked Sendable {
   }
 
   public func requestPermission() async -> PermissionStatus {
-    let center = UNUserNotificationCenter.current()
-    let granted = (try? await center.requestAuthorization(options: [.alert, .badge, .sound])) ?? false
-
-    if granted {
-      await MainActor.run {
-        UIApplication.shared.registerForRemoteNotifications()
+    await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+      DispatchQueue.main.async {
+        UNUserNotificationCenter.current().requestAuthorization(
+          options: [.alert, .badge, .sound]
+        ) { _, _ in
+          continuation.resume()
+        }
       }
     }
 
-    return await permissionStatus()
+    let status = await permissionStatus()
+    pushLog.info("Permission request finished with \(status.rawValue, privacy: .public)")
+
+    if status == .granted {
+      await registerForRemoteNotifications()
+    }
+
+    return status
   }
 
   public func token() async -> String? {
-    await PushTokenStore.shared.current()
+    if await permissionStatus() == .granted {
+      await registerForRemoteNotifications()
+    }
+
+    return await PushTokenStore.shared.current(timeout: 10)
+  }
+
+  public func registrationError() async -> String? {
+    PushTokenStore.shared.failureMessage()
+  }
+
+  private func registerForRemoteNotifications() async {
+      await MainActor.run {
+      PushTokenStore.shared.prepareForRegistration()
+      pushLog.info("Registering for remote notifications")
+      UIApplication.shared.registerForRemoteNotifications()
+    }
   }
 
   private func notificationSettings() async -> UNNotificationSettings {

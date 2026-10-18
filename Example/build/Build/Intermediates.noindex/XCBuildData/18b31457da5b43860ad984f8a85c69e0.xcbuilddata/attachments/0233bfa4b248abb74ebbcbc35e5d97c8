@@ -1,0 +1,129 @@
+{
+  "" : {
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableCore-primary.dia",
+    "emit-module-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableCore-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableCore-primary-emit-module.dia",
+    "pch" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableCore-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableCore-primary.swiftdeps"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Client/NotifiableClient.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableClient~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Environment.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Environment~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Inbox.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Inbox~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/JSONValue.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/JSONValue~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Locale.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Locale~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Models.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Models~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/NotifiableError.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/NotifiableError~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Ports.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Ports~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Domain/Subscriber.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Subscriber~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Internal/Storage.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/Storage~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Transport/HTTPClient.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/HTTPClient~partial.swiftmodule"
+  },
+  "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Sources/NotifiableCore/Transport/SdkAPI.swift" : {
+    "const-values" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI.swiftconstvalues",
+    "dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI.d",
+    "diagnostics" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI.dia",
+    "index-unit-output-path" : "/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI.o",
+    "llvm-bc" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI.bc",
+    "object" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI.o",
+    "swift-dependencies" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI.swiftdeps",
+    "swiftmodule" : "/Users/user/Desktop/Projects/claude/notifiable-sdks/swift/Example/build/Build/Intermediates.noindex/Notifiable.build/Debug-iphonesimulator/NotifiableCore.build/Objects-normal/arm64/SdkAPI~partial.swiftmodule"
+  }
+}
