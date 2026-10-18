@@ -133,19 +133,20 @@ private struct NotificationPreview: View {
   @State private var leaving = false
 
   var body: some View {
-    bannerCard
-      .padding(.horizontal, 10)
-      .padding(.top, 8)
-      .offset(y: banner ? 0 : -240)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-      .background {
-        Color.black.opacity(overlay ? 0.45 : 0)
-          .ignoresSafeArea()
-          .contentShape(Rectangle())
-          .onTapGesture {
-            leave()
-          }
-      }
+    ZStack(alignment: .top) {
+      Color.black.opacity(overlay ? 0.45 : 0)
+        .ignoresSafeArea()
+        .contentShape(Rectangle())
+        .onTapGesture {
+          leave()
+        }
+      bannerCard
+        .padding(.horizontal, 10)
+        .padding(.top, 8)
+        .offset(y: banner ? 0 : -240)
+        .zIndex(1)
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     .onAppear {
       withAnimation(.easeOut(duration: 0.28)) {
         overlay = true
@@ -199,6 +200,7 @@ private struct NotificationPreview: View {
           .fill(Color.white)
           .shadow(color: Color.black.opacity(0.2), radius: 18, y: 10)
       }
+      .contentShape(Rectangle())
     }
     .buttonStyle(.plain)
   }

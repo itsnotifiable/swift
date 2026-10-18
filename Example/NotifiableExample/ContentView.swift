@@ -29,7 +29,9 @@ enum ExamplePage: String, Hashable, CaseIterable {
 
   static func matching(_ url: String) -> ExamplePage? {
     let path = routePath(url)
-    return allCases.first { $0.path == path }
+    return allCases.first { page in
+      page.path == path || page.path == "/\(path)"
+    }
   }
 }
 
@@ -165,9 +167,20 @@ private struct PageScreen: View {
 }
 
 private func routePath(_ url: String) -> String {
-  if let components = URLComponents(string: url), components.scheme != nil {
-    return components.path
+  let withoutQuery = url.split(separator: "?", maxSplits: 1).first.map(String.init) ?? url
+
+  if let components = URLComponents(string: withoutQuery),
+    components.scheme != nil,
+    !components.path.isEmpty
+  {
+    return components.path.hasSuffix("/") && components.path.count > 1
+      ? String(components.path.dropLast())
+      : components.path
   }
 
-  return url.split(separator: "?", maxSplits: 1).first.map(String.init) ?? url
+  if withoutQuery.hasSuffix("/"), withoutQuery.count > 1 {
+    return String(withoutQuery.dropLast())
+  }
+
+  return withoutQuery
 }
