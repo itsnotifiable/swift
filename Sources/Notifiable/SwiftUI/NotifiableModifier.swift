@@ -63,8 +63,11 @@ private struct DevelopmentLayer: View {
 
   var body: some View {
     if client.snapshot.clientConfig?.environment == .development {
-      DevelopmentMark()
-      DevToasts()
+      ZStack {
+        DevelopmentMark()
+        DevToasts()
+      }
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
   }
 }

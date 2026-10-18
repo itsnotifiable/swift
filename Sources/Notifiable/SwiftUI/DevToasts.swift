@@ -9,25 +9,20 @@ struct DevToasts: View {
   @State private var queue: [SubscriberNotification] = []
 
   var body: some View {
-    ZStack(alignment: .top) {
+    ZStack {
       if let current {
-        ToastCard(notification: current) {
-          open(current)
-        }
-        .padding(.top, 8)
-        .allowsHitTesting(true)
-        .task(id: current.id) {
-          let shown = current.id
-          try? await client.openNotification(shown)
-          try? await Task.sleep(nanoseconds: 4_500_000_000)
-
-          if !Task.isCancelled {
-            advance()
-          }
-        }
+        NotificationPreview(
+          notification: current,
+          iconURL: client.snapshot.clientConfig?.app?.icon,
+          appName: client.snapshot.clientConfig?.app?.name,
+          onOpen: { open(current) },
+          onDismiss: advance
+        )
+        .id(current.id)
       }
     }
-    .frame(maxWidth: .infinity, alignment: .top)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .allowsHitTesting(current != nil)
     .task(id: pollIdentity) {
       await poll()
     }
@@ -123,32 +118,148 @@ struct DevToasts: View {
       print("[Notifiable] Opening \(url)")
       client.configuration.onDeepLink?(url)
     }
-
-    advance()
   }
 }
 
-private struct ToastCard: View {
+private struct NotificationPreview: View {
   var notification: SubscriberNotification
-  var onTap: () -> Void
+  var iconURL: String?
+  var appName: String?
+  var onOpen: () -> Void
+  var onDismiss: () -> Void
+  @EnvironmentObject private var client: NotifiableClient
+  @State private var overlay = false
+  @State private var banner = false
+  @State private var leaving = false
 
   var body: some View {
-    Button(action: onTap) {
-      VStack(alignment: .leading, spacing: 4) {
-        Text(notification.title.isEmpty ? "Notification" : notification.title)
-          .font(.headline)
-        if !notification.body.isEmpty {
-          Text(notification.body)
-            .font(.subheadline)
+    bannerCard
+      .padding(.horizontal, 10)
+      .padding(.top, 8)
+      .offset(y: banner ? 0 : -240)
+      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+      .background {
+        Color.black.opacity(overlay ? 0.45 : 0)
+          .ignoresSafeArea()
+          .contentShape(Rectangle())
+          .onTapGesture {
+            leave()
+          }
+      }
+    .onAppear {
+      withAnimation(.easeOut(duration: 0.28)) {
+        overlay = true
+      }
+      withAnimation(.spring(response: 0.5, dampingFraction: 0.78).delay(0.22)) {
+        banner = true
+      }
+    }
+    .task {
+      try? await client.openNotification(notification.id)
+      try? await Task.sleep(nanoseconds: 4_500_000_000)
+
+      if !Task.isCancelled {
+        leave()
+      }
+    }
+  }
+
+  private var bannerCard: some View {
+    Button {
+      onOpen()
+      leave()
+    } label: {
+      HStack(alignment: .center, spacing: 12) {
+        BannerIcon(url: iconURL, name: appName)
+        VStack(alignment: .leading, spacing: 2) {
+          HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Text(title)
+              .font(.subheadline.weight(.bold))
+              .foregroundStyle(Color(white: 0.08))
+              .lineLimit(1)
+            Spacer(minLength: 8)
+            Text("now")
+              .font(.caption)
+              .foregroundStyle(Color.black.opacity(0.38))
+          }
+          if !notification.body.isEmpty {
+            Text(notification.body)
+              .font(.subheadline)
+              .foregroundStyle(Color.black.opacity(0.5))
+              .lineLimit(2)
+              .multilineTextAlignment(.leading)
+          }
         }
       }
-      .foregroundStyle(.white)
+      .padding(.horizontal, 14)
+      .padding(.vertical, 12)
       .frame(maxWidth: .infinity, alignment: .leading)
-      .padding(16)
-      .background(Color.black.opacity(0.82), in: RoundedRectangle(cornerRadius: 22))
-      .padding(.horizontal, 12)
+      .background {
+        RoundedRectangle(cornerRadius: 24, style: .continuous)
+          .fill(Color.white)
+          .shadow(color: Color.black.opacity(0.2), radius: 18, y: 10)
+      }
     }
     .buttonStyle(.plain)
+  }
+
+  private var title: String {
+    notification.title.isEmpty ? "Notification" : notification.title
+  }
+
+  private func leave() {
+    guard !leaving else {
+      return
+    }
+
+    leaving = true
+    withAnimation(.spring(response: 0.32, dampingFraction: 0.9)) {
+      banner = false
+    }
+    withAnimation(.easeIn(duration: 0.22).delay(0.12)) {
+      overlay = false
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.36) {
+      onDismiss()
+    }
+  }
+}
+
+private struct BannerIcon: View {
+  var url: String?
+  var name: String?
+
+  var body: some View {
+    Group {
+      if let url, let iconURL = URL(string: url), iconURL.scheme == "https" || iconURL.scheme == "http" {
+        AsyncImage(url: iconURL) { phase in
+          switch phase {
+          case let .success(image):
+            image.resizable().scaledToFill()
+          default:
+            fallback
+          }
+        }
+      } else {
+        fallback
+      }
+    }
+    .frame(width: 40, height: 40)
+    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+  }
+
+  private var fallback: some View {
+    ZStack {
+      Color(white: 0.92)
+      Text(monogram)
+        .font(.headline.weight(.bold))
+        .foregroundStyle(Color(white: 0.2))
+    }
+  }
+
+  private var monogram: String {
+    let letter = name?.first { $0.isLetter }
+    return letter.map { String($0).uppercased() } ?? "N"
   }
 }
 
