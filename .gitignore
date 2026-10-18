@@ -1,5 +1,6 @@
 .build/
 .swiftpm/
 DerivedData/
+Example/
 *.xcodeproj/xcuserdata/
 *.xcuserstate

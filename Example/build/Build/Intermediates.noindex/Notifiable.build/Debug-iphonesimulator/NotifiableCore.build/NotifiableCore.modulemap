@@ -1,4 +1,0 @@
-module NotifiableCore {
-header "NotifiableCore-Swift.h"
-export *
-}

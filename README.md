@@ -8,11 +8,11 @@ The package talks to `https://notifiable.sh/api` and sends `X-Notifiable-Key` on
 
 ## Install
 
-In Xcode, add this `swift` folder as a local Swift package and add the `Notifiable` product to the app target.
+In Xcode, add `https://github.com/itsnotifiable/swift` and add the `Notifiable` product to the app target. The package is the library only.
 
 ```swift
 dependencies: [
-  .package(path: "../swift"),
+  .package(url: "https://github.com/itsnotifiable/swift", from: "0.1.1"),
 ],
 targets: [
   .target(
@@ -59,8 +59,6 @@ func application(
   NotifiableClient.didFailToRegisterForRemoteNotifications()
 }
 ```
-
-The example in `Example/NotifiableExample.xcodeproj` mounts `.notifiable`, requests permission, identifies a subscriber, tracks `order.shipped`, and opens `/orders` or `/inbox` when a notification path matches. Replace `ntf_pub_example` with a real development key before running it.
 
 ## Configure
 

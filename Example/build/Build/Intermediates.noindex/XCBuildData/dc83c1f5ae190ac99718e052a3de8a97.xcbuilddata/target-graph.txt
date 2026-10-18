@@ -1,9 +1,0 @@
-Target dependency graph (4 targets)
-Target 'NotifiableExample' in project 'NotifiableExample'
-➜ Explicit dependency on target 'Notifiable' in project 'Notifiable'
-Target 'Notifiable' in project 'Notifiable'
-➜ Explicit dependency on target 'Notifiable' in project 'Notifiable'
-➜ Explicit dependency on target 'NotifiableCore' in project 'Notifiable'
-Target 'Notifiable' in project 'Notifiable'
-➜ Explicit dependency on target 'NotifiableCore' in project 'Notifiable'
-Target 'NotifiableCore' in project 'Notifiable' (no dependencies)
