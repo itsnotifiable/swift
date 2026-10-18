@@ -4,18 +4,19 @@ import Notifiable
 @main
 struct NotifiableExampleApp: App {
   @UIApplicationDelegateAdaptor(NotifiableAppDelegate.self) private var appDelegate
+  @StateObject private var router = ExampleRouter()
 
   var body: some Scene {
     WindowGroup {
       ContentView()
+        .environmentObject(router)
         .notifiable(
           publicKey: "ntf_pub_h4ybjm0yhkdcob6ceztzlukb0qxcctm8",
-          deepLinks: [
-            DeepLink(path: "/orders", label: "Orders"),
-            DeepLink(path: "/inbox", label: "Inbox"),
-          ],
+          deepLinks: exampleDeepLinks,
           onDeepLink: { url in
-            print("[Notifiable] Open \(url)")
+            Task { @MainActor in
+              router.open(url: url)
+            }
           }
         )
     }

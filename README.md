@@ -60,7 +60,7 @@ func application(
 }
 ```
 
-The example in `Example/NotifiableExample.xcodeproj` is a small SwiftUI app that mounts `.notifiable`, requests permission, and identifies a subscriber. Replace `ntf_pub_example` with a real development key before running it.
+The example in `Example/NotifiableExample.xcodeproj` mounts `.notifiable`, requests permission, identifies a subscriber, tracks `order.shipped`, and opens `/orders` or `/inbox` when a notification path matches. Replace `ntf_pub_example` with a real development key before running it.
 
 ## Configure
 

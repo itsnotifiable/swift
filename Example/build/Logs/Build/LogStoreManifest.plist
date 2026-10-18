@@ -132,6 +132,48 @@
 			<key>uniqueIdentifier</key>
 			<string>93C431DB-9450-4537-BAD2-D22D58C31E56</string>
 		</dict>
+		<key>95274E11-B612-4FEC-A33A-F66E8F3F549A</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>95274E11-B612-4FEC-A33A-F66E8F3F549A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>NotifiableExample project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>NotifiableExample</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project NotifiableExample with scheme NotifiableExample</string>
+			<key>timeStartedRecording</key>
+			<real>813976844.93236005</real>
+			<key>timeStoppedRecording</key>
+			<real>813976848.11387599</real>
+			<key>title</key>
+			<string>Building project NotifiableExample with scheme NotifiableExample</string>
+			<key>uniqueIdentifier</key>
+			<string>95274E11-B612-4FEC-A33A-F66E8F3F549A</string>
+		</dict>
 	</dict>
 </dict>
 </plist>
