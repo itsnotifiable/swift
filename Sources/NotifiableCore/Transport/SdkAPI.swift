@@ -296,14 +296,15 @@ private func parseSubscriber(_ data: JSONValue?) throws -> Subscriber {
     throw NotifiableError(code: .network, message: "The subscriber response was invalid.")
   }
 
+  // Unknown values (including legacy "expo") become nil so old sessions load.
   let provider: PushProvider?
 
   if fields["provider"] == nil || fields["provider"] == .null {
     provider = nil
-  } else if case let .string(raw) = fields["provider"], let parsed = PushProvider(rawValue: raw) {
-    provider = parsed
+  } else if case let .string(raw) = fields["provider"] {
+    provider = PushProvider(rawValue: raw)
   } else {
-    throw NotifiableError(code: .network, message: "The subscriber response was invalid.")
+    provider = nil
   }
 
   return Subscriber(

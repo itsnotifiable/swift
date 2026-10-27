@@ -18,7 +18,6 @@ public enum MobilePlatform: String, Sendable, Equatable {
 public enum PushProvider: String, Sendable, Equatable {
   case apns
   case fcm
-  case expo
   case webPush = "web_push"
 }
 
