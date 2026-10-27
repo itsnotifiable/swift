@@ -133,6 +133,47 @@ final class NotifiableClientTests: XCTestCase {
   }
 
   @MainActor
+  func testDashboardPromptClearsWithoutToken() async throws {
+    let transport = StubTransport { call in
+      if call.url.contains("client-config") {
+        return success(clientConfig(environment: "development"))
+      }
+
+      let prompted = call.body["prompted"] as? Bool == true
+      return success(subscriber(prompt: !prompted, permission: "not_determined"))
+    }
+    let push = FakePush()
+    push.deviceToken = nil
+    let client = try makeClient(transport: transport, push: push)
+
+    try await client.start()
+
+    let posts = transport.recorded().filter { $0.method == "POST" && $0.url.contains("/subscribers") }
+    XCTAssertEqual(posts.count, 2)
+    XCTAssertEqual(posts[1].body["prompted"] as? Bool, true)
+    XCTAssertEqual(posts[1].body["permission"] as? String, "not_determined")
+    XCTAssertNil(posts[1].body["token"])
+    XCTAssertEqual(push.requests, 1)
+    XCTAssertNil(client.snapshot.error)
+  }
+
+  @MainActor
+  func testExplicitRequestRequiresToken() async throws {
+    let transport = countingSubscriberTransport()
+    let push = FakePush()
+    push.deviceToken = nil
+    let client = try makeClient(transport: transport, push: push)
+    try await client.start()
+
+    do {
+      _ = try await client.requestPermission()
+      XCTFail("expected missing_token")
+    } catch let error as NotifiableError {
+      XCTAssertEqual(error.code, .missingToken)
+    }
+  }
+
+  @MainActor
   func testIdentifyClearsAnonymousId() async throws {
     let transport = StubTransport { call in
       if call.url.contains("client-config") {

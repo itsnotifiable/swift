@@ -19,6 +19,12 @@ public final class ApplePushPort: PushPort, @unchecked Sendable {
   }
 
   public func requestPermission() async -> PermissionStatus {
+    let current = await permissionStatus()
+    if current == .denied {
+      await openNotificationSettings()
+      return .denied
+    }
+
     await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
       DispatchQueue.main.async {
         UNUserNotificationCenter.current().requestAuthorization(
@@ -51,8 +57,17 @@ public final class ApplePushPort: PushPort, @unchecked Sendable {
     PushTokenStore.shared.failureMessage()
   }
 
+  private func openNotificationSettings() async {
+    await MainActor.run {
+      guard let url = URL(string: UIApplication.openSettingsURLString) else {
+        return
+      }
+      UIApplication.shared.open(url)
+    }
+  }
+
   private func registerForRemoteNotifications() async {
-      await MainActor.run {
+    await MainActor.run {
       PushTokenStore.shared.prepareForRegistration()
       pushLog.info("Registering for remote notifications")
       UIApplication.shared.registerForRemoteNotifications()

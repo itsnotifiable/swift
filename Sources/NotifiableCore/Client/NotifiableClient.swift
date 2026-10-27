@@ -252,10 +252,11 @@ public final class NotifiableClient: ObservableObject {
     }
 
     logger.info("Permission prompt requested", context: [:])
-    _ = try await performRequestPermission()
+    // Dashboard prompts must clear even when a token cannot be created.
+    _ = try await performRequestPermission(requireToken: false)
   }
 
-  private func performRequestPermission() async throws -> PermissionStatus {
+  private func performRequestPermission(requireToken: Bool = true) async throws -> PermissionStatus {
     try await guardRun {
       guard self.configuration.push != nil else {
         throw NotifiableError(
@@ -268,7 +269,7 @@ public final class NotifiableClient: ObservableObject {
       try await self.syncDevice(
         prompted: true,
         permission: permission,
-        requireToken: permission == .granted
+        requireToken: requireToken && permission == .granted
       )
       return self.snapshot.permission
     }
